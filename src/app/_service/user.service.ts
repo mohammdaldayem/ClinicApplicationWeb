@@ -6,6 +6,7 @@ import { FinancialInsert } from '../_model/FinancialInsert';
 import { HttpClient } from '@angular/common/http';
 import { Visit } from '../_model/Visit';
 import { map } from 'rxjs/operators';
+import { PrescriptionParent } from '../_model/PrescriptionParent';
 
 @Injectable()
 export class UserService {
@@ -13,6 +14,7 @@ export class UserService {
     users: User[];
    userToReturn: User;
    imageUrl = environment.defaultImage;
+   prescriptions: PrescriptionParent[];
 constructor(private http: HttpClient  ) {
 
  }
@@ -69,5 +71,7 @@ AddPatientFinancialInfo(financialInfo: FinancialInsert) {
  deletePhoto(userId: number , id: number ) {
    return this.authHttp.delete(this.baseUrl + '/' + userId + '/photos/' + id).catch(this.handelError);
  }*/
-
+LoadPrescriptions() {
+ return this.http.get(this.baseUrl + 'Prescription/GetPrescriptions');
+}
 }

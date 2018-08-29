@@ -10,6 +10,9 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { ConfirmValidParentMatcher, errorMessages, CustomValidators } from '../../../_model/CustomValidators';
 import { FinancialInsert } from '../../../_model/FinancialInsert';
 import { HttpClient } from '@angular/common/http';
+import { SelectionModel } from '@angular/cdk/collections';
+import { PrescriptionParent } from '../../../_model/PrescriptionParent';
+import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'app-patient-profile',
@@ -19,13 +22,16 @@ import { HttpClient } from '@angular/common/http';
 export class PatientProfileComponent implements OnInit {
 
   displayedColumns = ['position', 'date', 'doctor', 'diagnosis', 'treatment', 'prescription', 'financial'];
-  displayedColumnsForVisit = ['visitID' , 'visitTime' , 'treatment' , 'diagnosis', 'visitDate'];
+  displayedColumnsForVisit = ['select', 'visitID' , 'visitTime' , 'treatment' , 'diagnosis', 'visitDate'];
   // tslint:disable-next-line:max-line-length
   displayedColumnsForFinancial = ['financialID' , 'visitid' , 'employeeID' , 'note', 'doctorName', 'financialDate', 'treatmentCost', 'patientCredit' , 'patientDebit', 'isDoctor'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   visitsSource = new MatTableDataSource<Visit>();
   financialSource = new MatTableDataSource<Financial>();
+  selection = new SelectionModel<Visit>(false, []);
+  selectedIndex = 0;
   user: User;
+  prescriptions: Observable<PrescriptionParent[]>;
   financialInsert: FinancialInsert;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -54,6 +60,13 @@ export class PatientProfileComponent implements OnInit {
     this.financialSource.sort = this.sort;
     this.financialSource.paginator = this.paginator;
    this.applyFilter('');
+   this.userService.LoadPrescriptions().subscribe(response => {
+    this.prescriptions = Observable.create((observer: Observer<PrescriptionParent[]>) => {
+      setTimeout(() => {
+        observer.next(<PrescriptionParent[]>response);
+      }, 10);
+    });
+  });
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -94,6 +107,24 @@ export class PatientProfileComponent implements OnInit {
       this.http.post('http://localhost:4820/api/Financial/InseartPatientFinancial', this.financialInsert );
      // this.userService.AddPatientFinancialInfo(this.financialInsert);
     });
+  }
+  ChekeisVisiteSelected(Index: Number) {
+    if (this.selectedIndex !== 0) {
+     if (this.selection.selected.length <= 0) {
+       this.selectedIndex = 0;
+     alert('Please Select Visite');
+     }
+     if (this.selectedIndex === 2) {
+
+     }
+    }
+  }
+  LoadVisiteData(row) {
+    this.selection.isSelected(row);
+  }
+  Loadprescription() {
+    // tslint:disable-next-line:no-unused-expression
+    this.selection.selected[0];
   }
 }
 export interface Element {
