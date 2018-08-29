@@ -1,0 +1,11 @@
+/* 1. Add this mixin to a "global" scss */
+
+@mixin mat-icon-size($size: 24px) {
+  font-size: $size;
+  height: $size;
+  width: $size;
+  line-height: $size;
+}
+
+
+

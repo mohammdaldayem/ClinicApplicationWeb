@@ -1,0 +1,51 @@
+<mat-form-field class="search-form">
+  <input matInput placeholder="Search For a specific patient" type="text">
+</mat-form-field>
+<div class="basic-container">
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <span class="example-spacer"></span>
+            <button mat-icon-button color="primary"[matMenuTriggerFor]="menu"  class="example-icon">
+                <mat-icon class="size-48" aria-label="Example icon-button with a heart icon">settings</mat-icon>
+              </button>
+           
+        </mat-toolbar-row>
+        </mat-toolbar>
+  
+
+ 
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)=" openRegistrationDialog()">Add Patient</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+</div>
+
+
+<mat-card class="container" fxLayout="row" fxLayoutWrap fxLayoutGap="10px" fxLayoutAlign="left">
+
+
+  <mat-card class="new" *ngFor="let user of users">
+
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Patient Name: {{user.patientName}}</mat-card-title>
+        <mat-card-subtitle>Patient Number: {{user.patientNo}}</mat-card-subtitle>
+   
+    </mat-card-header>
+    <mat-card-content >
+        <label>Patient Age: <span>{{user.age}}</span></label> <br>
+        <label>Patient Mobile Number: <span>{{user.mobileNumber}}</span></label> <br>
+        <label>Patient Gender: <span>{{user.gender}}</span></label> <br>
+        <label>Patient Doctor Name: <span>{{user.drName}}</span></label> <br>
+        <label>Patient Creation Date: <span>{{user.creationDate|  date: 'dd/MM/yyyy'}}</span></label> 
+    
+    </mat-card-content>
+    <mat-card-actions>
+        <button (click)="navigateToPatientProfile(user.patientID)" mat-flat-button color="primary"> View Profile</button>  
+        <button (click)="openEditDialog()"mat-stroked-button>Edit</button>
+        <button  mat-stroked-button color="warn">delete</button>
+      </mat-card-actions>
+      
+  </mat-card>
+
+</mat-card>

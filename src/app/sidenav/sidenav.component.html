@@ -1,0 +1,31 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="example-app-name">Clinic Application</h1>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+
+
+
+    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <h3 mat-subheader></h3>
+
+        <a mat-list-item [routerLink]="basic.routeUrl" *ngFor="let basic of BasicOptions">
+          <mat-icon mat-list-icon>{{basic.iconName}}</mat-icon>
+          <h4 mat-line>{{basic.name}}</h4>
+        </a>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Notes</h3>
+
+      </mat-nav-list>
+    </mat-sidenav>
+    <br>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,72 @@
+.example-card{
+width: 250px;
+margin-left:10px;
+height: 100%;
+}
+.container {
+    width: 100%;
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+  }
+  .demo-tab-group {
+    border: 1px solid #e8e8e8;
+  }
+  
+  .demo-tab-content {
+    padding: 16px;
+  }
+  .tap-card{
+    width: 100%;
+    
+  }
+
+  .cardTapped 
+  {
+    width: 100%;
+    height: 100%;
+  }
+  .userImgProfile{
+      height: 150px;
+      width: 150px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 50%;
+  }
+  .align-items-center {
+    align-items: center;
+  }
+  .row {
+    display: flex;
+  }
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .example-header-image {
+    background-image: url('https://www.viawater.nl/files/default-user.png');
+    background-size: cover;
+  }
+  .example-card {
+    max-width: 225px;
+    margin-bottom: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -15px;
+  }
+  .belowTable{
+
+    margin-top: 15px;
+  }
+  

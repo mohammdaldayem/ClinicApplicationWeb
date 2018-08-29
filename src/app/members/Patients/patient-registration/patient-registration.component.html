@@ -1,0 +1,53 @@
+<div class="main-div">
+<mat-card class="example-card center" flex="50">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Patient Registration</mat-card-title>
+    
+    </mat-card-header>
+    <mat-card-content>
+      
+     <form class="example-form" [formGroup]="registerForm">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="First Name" type="text" formControlName="FirstName" [errorStateMatcher]="confirmValidParentMatcher">
+            <mat-error>
+             
+              {{errors.FirstName}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Last Name" type="text" formControlName="LastName" [errorStateMatcher]="confirmValidParentMatcher">
+              <mat-error>
+                  {{errors.LastName}}
+              </mat-error>
+            </mat-form-field>
+            <div formGroupName="emailGroup">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" formControlName="Email" type="email" [errorStateMatcher]="confirmValidParentMatcher">
+            <mat-error *ngIf="errors.email">
+            
+            {{errors.email}}
+            </mat-error>
+            <mat-error *ngIf="!errors.email">
+                {{errors.emailRequired}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Age" type="number" formControlName="Age" [errorStateMatcher]="confirmValidParentMatcher">
+              <mat-error >
+                  {{errors.Age}}
+              </mat-error>
+            </mat-form-field>
+
+
+     </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary">Submit</button>
+     
+    </mat-card-actions>
+  </mat-card></div>

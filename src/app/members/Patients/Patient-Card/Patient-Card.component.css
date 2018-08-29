@@ -1,0 +1,38 @@
+.container {
+  width: 100%;
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.new {
+  max-width: 300px;
+  margin-bottom: 5%;
+  height:250px ;
+}
+.search-form {
+  width: 90%;
+  margin-left: 5%;
+}
+.basic-container .mat-toolbar {
+  align-items: flex-end;
+}
+.mat-toolbar {
+       background: #fffafa; 
+}
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+mat-icon.size-48 {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+}
+.example-header-image {
+  background-image: url('https://www.viawater.nl/files/default-user.png');
+  background-size: cover;
+}
