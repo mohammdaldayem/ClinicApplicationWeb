@@ -9,7 +9,7 @@ import { Financial } from '../../../_model/Financial';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ConfirmValidParentMatcher, errorMessages, CustomValidators } from '../../../_model/CustomValidators';
 import { FinancialInsert } from '../../../_model/FinancialInsert';
-import { Http } from '../../../../../node_modules/@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-patient-profile',
@@ -30,14 +30,14 @@ export class PatientProfileComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   // tslint:disable-next-line:max-line-length
-  constructor(private route: ActivatedRoute, private http: Http, public dialog: MatDialog,  private userService: UserService , private alertify: AlertifyService) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, public dialog: MatDialog,  private userService: UserService , private alertify: AlertifyService) {
   }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.user = data['visit'][0];
-      this.user.visits = data['visit'].visits;
-      this.user.financial = data['visit'].financial;
+      this.user = data['user'][0];
+      this.user.visits = data['visit'];
+      this.user.financial = data['financial'];
       this.visitsSource.data = this.user.visits;
       this.financialSource.data = this.user.financial;
     });
@@ -91,10 +91,7 @@ export class PatientProfileComponent implements OnInit {
       this.financialInsert.EmployeeID = 4 ;
       this.financialInsert.PaymentTypeID = 1;
       this.financialInsert.isDoctor = true ;
-      this.http.post('http://localhost:4820/api/Financial/InseartPatientFinancial', this.financialInsert ).subscribe(res => 
-      this.alertify.success('success')
-
-      );
+      this.http.post('http://localhost:4820/api/Financial/InseartPatientFinancial', this.financialInsert );
      // this.userService.AddPatientFinancialInfo(this.financialInsert);
     });
   }

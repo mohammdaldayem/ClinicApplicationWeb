@@ -62,7 +62,7 @@
                   <!-- Symbol Column -->
                   <ng-container matColumnDef="diagnosis">
                     <mat-header-cell *matHeaderCellDef> diagnosis </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.diagnosis}} </mat-cell>
+                    <mat-cell *matCellDef="let element"><textarea>{{element.diagnosis}}</textarea> </mat-cell>
                   </ng-container>
               
                   <ng-container matColumnDef="visitDate">
